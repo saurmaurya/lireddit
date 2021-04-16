@@ -178,8 +178,10 @@ export class UserResolver {
         return {
           errors: [
             {
-              field: "username",
-              message: "username already taken",
+              field: err.detail.includes("username") ? "username" : "email",
+              message: err.detail.includes("username")
+                ? "username already taken"
+                : "email already taken",
             },
           ],
         };
